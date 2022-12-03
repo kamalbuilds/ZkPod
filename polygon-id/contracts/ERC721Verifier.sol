@@ -1,21 +1,21 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/token/erc721/erc721.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
 import "./lib/GenesisUtils.sol";
 import "./interfaces/ICircuitValidator.sol";
 import "./verifiers/ZKPVerifier.sol";
 
-contract ERC721Verifier is ERC721, ZKPVerifier {
+contract ERC721Verifier is ERC721URIStorage, ZKPVerifier {
     using Counters for Counters.Counter;
     uint64 public constant TRANSFER_REQUEST_ID = 1;
 
     Counters.Counter private _tokenIds;
 
-    // mapping(uint256 => address) public idToAddress;
-    // mapping(address => uint256) public addressToId;
+    mapping(uint256 => address) public idToAddress;
+    mapping(address => uint256) public addressToId;
 
     constructor(string memory name_, string memory symbol_)
         ERC721(name_, symbol_)
@@ -39,7 +39,8 @@ contract ERC721Verifier is ERC721, ZKPVerifier {
     function _afterProofSubmit(
         uint64 requestId,
         uint256[] memory inputs,
-        ICircuitValidator validator
+        ICircuitValidator validator,
+        string memory uri
     ) internal override {
         require(
             requestId == TRANSFER_REQUEST_ID && addressToId[_msgSender()] == 0,
@@ -50,9 +51,11 @@ contract ERC721Verifier is ERC721, ZKPVerifier {
         // execute the airdropping of NFT
         if (idToAddress[id] == address(0)) {
             super._mint(_msgSender(), _tokenIds.current());
+            super._setTokenURI(_tokenIds.current(), uri);
             _tokenIds.increment();
-            // addressToId[_msgSender()] = id;
-            // idToAddress[id] = _msgSender();
+            addressToId[_msgSender()] = id;
+            idToAddress[id] = _msgSender();
+            
         }
     }
 
@@ -60,7 +63,7 @@ contract ERC721Verifier is ERC721, ZKPVerifier {
         address, /* from */
         address to,
         uint256 /* amount */
-    ) internal view override {
+    ) internal view {
         require(
             proofs[to][TRANSFER_REQUEST_ID] == true,
             "only identities who provided proof are allowed to receive tokens"
