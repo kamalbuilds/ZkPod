@@ -41,7 +41,7 @@ contract ERC721Verifier is ERC721URIStorage, ZKPVerifier {
         uint256[] memory inputs,
         ICircuitValidator validator,
         string memory uri
-    ) internal override {
+    ) internal {
         require(
             requestId == TRANSFER_REQUEST_ID && addressToId[_msgSender()] == 0,
             "proof can not be submitted more than once"
@@ -55,7 +55,6 @@ contract ERC721Verifier is ERC721URIStorage, ZKPVerifier {
             _tokenIds.increment();
             addressToId[_msgSender()] = id;
             idToAddress[id] = _msgSender();
-            
         }
     }
 
