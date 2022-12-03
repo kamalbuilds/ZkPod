@@ -1,15 +1,17 @@
+// to deploy the contracts
+
 async function main() {
-    const verifierContract = "ERC20Verifier";
-    const verifierName = "ERC20zkAirdrop";
-    const verifierSymbol = "zkERC20";
-    const ERC20Verifier = await ethers.getContractFactory(verifierContract);
-    const erc20Verifier = await ERC20Verifier.deploy(
+    const verifierContract = "ERC721Verifier";
+    const verifierName = "Institution";
+    const verifierSymbol = "INST";
+    const ERC721Verifier = await ethers.getContractFactory(verifierContract);
+    const erc721Verifier = await ERC721Verifier.deploy(
       verifierName,
       verifierSymbol
     );
   
-    await erc20Verifier.deployed();
-    console.log(verifierName, " tx hash:", erc20Verifier.address);
+    await erc721Verifier.deployed();
+    console.log(verifierName, " tx hash:", erc721Verifier.address);
   }
   main()
     .then(() => process.exit(0))
