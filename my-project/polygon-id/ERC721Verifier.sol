@@ -13,10 +13,10 @@ contract ERC721Verifier is ERC721, ZKPVerifier {
     mapping(uint256 => address) public idToAddress;
     mapping(address => uint256) public addressToId;
 
-    uint256 public TOKEN_AMOUNT_FOR_AIRDROP_PER_ID = 5 * 10**uint(decimals());
+    uint256 public TOKEN_AMOUNT_FOR_ISSUING_NFT_PER_ID = 5 * 10**uint(decimals());
 
     constructor(string memory name_, string memory symbol_)
-        ERC20(name_, symbol_)
+        ERC721(name_, symbol_)
     {}    
 
     function _beforeProofSubmit(
@@ -47,7 +47,7 @@ contract ERC721Verifier is ERC721, ZKPVerifier {
         uint256 id = inputs[validator.getChallengeInputIndex()];
         // execute the airdrop
         if (idToAddress[id] == address(0)) {
-            super._mint(_msgSender(), TOKEN_AMOUNT_FOR_AIRDROP_PER_ID);
+            super._mint(_msgSender(), TOKEN_AMOUNT_FOR_ISSUING_NFT_PER_ID);
             addressToId[_msgSender()] = id;
             idToAddress[id] = _msgSender();
         }
