@@ -2,7 +2,7 @@ import React,{useContext} from 'react'
 import {Box} from "@mui/material"
 import Image from "next/image"
 import uni from "../assets/uni.webp"
-import ButtonUI from '../compoponent/Button'
+import ButtonUI from '../component/Button'
 import {AuthContext} from '../context/AuthContext'
 import Router from 'next/router'
 const Login = () => {

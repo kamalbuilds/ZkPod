@@ -2,7 +2,7 @@ import React, { useState,useContext } from 'react'
 import { Box, TextField,Typography } from "@mui/material"
 import Image from 'next/image'
 import med from "../assets/med4.png"
-import ButtonUI from '../compoponent/Button'
+import ButtonUI from '../component/Button'
 import { AuthContext } from '../context/AuthContext'
 import { addressShortner } from '../utils/addressShortner'
 

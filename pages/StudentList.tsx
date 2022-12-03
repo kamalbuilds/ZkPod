@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import ListItem from '../compoponent/ListItem'
+import ListItem from '../component/ListItem'
 import {Box,Typography} from "@mui/material"
 import Image, { StaticImageData } from 'next/image'
 import med from "../assets/med4.png"
