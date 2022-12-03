@@ -63,16 +63,17 @@ const StudentRegistration = () => {
     />
     <Typography variant='h2' fontWeight='bold' textAlign="center" sx={{
       color:"#16c2d5",
-      marginLeft:4,
-      width:"600px"
+      marginLeft:2,
+      marginRight:4,
+      width:"400px"
     }}>
-      Register !!! To Claim Your Degree 📃
+      Login to claim your degree as an SBT, and generate a proof for your identity on-chain.
     </Typography>
     
     </Box> 
     </Box>
         <Box display="flex" flexDirection="column" alignItems="center" mb={4}>
-            <Typography variant='h2' fontWeight="bold">Wellcome {addressShortner(atx.address)} 👋</Typography>
+            <Typography variant='h2' fontWeight="bold">Welcome 👋</Typography>
             {inputs.map((input, i) => (
                 <TextField sx={{
                     mb:2,
