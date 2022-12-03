@@ -11,9 +11,7 @@ const StudentRegistration = () => {
     const [value, setValue] = useState({
         name: "",
         studentId:"",
-        age: "",
-        phnnumber: "",
-        passoutdate: "",
+        walletAddress:"",
     });
     const inputs = [{
         title: "Name",
@@ -26,6 +24,13 @@ const StudentRegistration = () => {
        type:"text" 
 
     },
+    {
+       title:"Wallet Address",
+       name:"Address",
+       type:"text" 
+
+    },
+
 
     ]
 
