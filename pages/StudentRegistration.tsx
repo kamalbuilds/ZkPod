@@ -2,7 +2,7 @@ import React, { useState,useContext } from 'react'
 import { Box, TextField,Typography } from "@mui/material"
 import Image from 'next/image'
 import med from "../assets/med4.png"
-import ButtonUI from '../component/Button'
+import ButtonUI from '../compoponent/Button'
 import { AuthContext } from '../context/AuthContext'
 import { addressShortner } from '../utils/addressShortner'
 
@@ -11,9 +11,7 @@ const StudentRegistration = () => {
     const [value, setValue] = useState({
         name: "",
         studentId:"",
-        age: "",
-        phnnumber: "",
-        passoutdate: "",
+        walletAddress:"",
     });
     const inputs = [{
         title: "Name",
@@ -26,6 +24,13 @@ const StudentRegistration = () => {
        type:"text" 
 
     },
+    {
+       title:"Wallet Address",
+       name:"Address",
+       type:"text" 
+
+    },
+
 
     ]
 
