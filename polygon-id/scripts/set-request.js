@@ -7,12 +7,21 @@ async function main() {
   // already deployed contract add that does the validation
   const validatorAddress = "0xb1e86C4c687B85520eF4fd2a0d14e81970a15aFB";
 
+
+
+  //custom
+  const schemaHash = "c6cd9c4ea01df58ef5386515a3e3acc0" // extracted from PID Platform
+
+  const schemaEnd = fromLittleEndian(hexToBytes(schemaHash))
+
+ 
   // Query language: https://0xpolygonid.github.io/tutorials/verifier/verification-library/zk-query-language/
-  const ageQuery = {
-    schema: ethers.BigNumber.from("210459579859058135404770043788028292398"),
-    slotIndex: 2,
-    operator: 2,
-    value: [20010101, ...new Array(63).fill(0).map((i) => 0)],
+
+  const query = {
+    schema: ethers.BigNumber.from(schemaEnd),
+    slotIndex: 2, // slotIndex2 indicates the value stored as Attribute 1 inside the claim
+    operator: 4,
+    value: [2, 3, ...new Array(62).fill(0).map(i => 0)],
     circuitId,
   };
 
@@ -24,10 +33,10 @@ async function main() {
     ERC721VerifierAddress
   );
 
-  const requestId = await erc20Verifier.TRANSFER_REQUEST_ID();
+  const requestId = await erc721Verifier.TRANSFER_REQUEST_ID();
 
   try {
-    await erc721Verifier.setZKPRequest(requestId, validatorAddress, ageQuery);
+    await erc721Verifier.setZKPRequest(requestId, validatorAddress, query);
     console.log("Request set");
   } catch (e) {
     console.log("error: ", e);

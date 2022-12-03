@@ -45,7 +45,7 @@ contract ERC721Verifier is ERC721, ZKPVerifier {
         );
 
         uint256 id = inputs[validator.getChallengeInputIndex()];
-        // execute the airdrop
+        // execute the airdropping of NFT
         if (idToAddress[id] == address(0)) {
             super._mint(_msgSender(), TOKEN_AMOUNT_FOR_ISSUING_NFT_PER_ID);
             addressToId[_msgSender()] = id;
