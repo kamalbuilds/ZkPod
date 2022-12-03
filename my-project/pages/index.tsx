@@ -8,7 +8,6 @@ import StudentRegistration from './StudentRegistration'
 export default function Home() {
   return (
     <div className={styles.container}>
-     <Navbar/> 
       {/* <StudentList/> */}
       {/* <StudentRegistration/> */}
       {/* <Student/> */}

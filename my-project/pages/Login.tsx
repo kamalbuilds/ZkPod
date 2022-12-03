@@ -8,8 +8,8 @@ import Router from 'next/router'
 const Login = () => {
     const atx=useContext(AuthContext)
 
-  const login=()=>{
-    atx.login();
+  const login= async ()=>{
+    await atx.login();
     if(!atx.err){
         console.log(atx.address);
         if(!atx.userDetails){

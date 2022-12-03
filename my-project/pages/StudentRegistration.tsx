@@ -48,7 +48,7 @@ const StudentRegistration = () => {
     return (
     <>
         <Box >
-        <Box mt={5} mb={8} display="flex" justifyContent="space-between" alignItems="center" flexWrap="wrap">
+        <Box mt={5} mb={8} display="flex" justifyContent="space-around" alignItems="center">
     <Image
       src={med}
       alt="image"
@@ -58,7 +58,8 @@ const StudentRegistration = () => {
     />
     <Typography variant='h2' fontWeight='bold' textAlign="center" sx={{
       color:"#16c2d5",
-      marginLeft:4
+      marginLeft:4,
+      width:"600px"
     }}>
       Register !!! To Claim Your Degree 📃
     </Typography>
