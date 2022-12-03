@@ -2,6 +2,7 @@ html,
 body {
   padding: 0;
   margin: 0;
+  background-color: #afe4e710;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
@@ -15,16 +16,16 @@ a {
   box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+.glassmorphism-card{
+  width:100%;
+  height:100%;
+  background-color: rgba(41, 166, 238, 0.26);
+  border-radius: 20px;
 }
 
+.primary-text{
+  color: black !important
+}
 
 @tailwind base;
 @tailwind components;
