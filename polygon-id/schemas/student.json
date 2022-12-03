@@ -1,0 +1,16 @@
+{
+    "schema": "student-schema",
+    "mandatoryExpiration": false,
+    "attributes": [
+        {
+            "name": "name",
+            "type": "string",
+            "description": "Name of the college"
+        },
+        {
+            "name": "resgistrsatoinNumber",
+            "type": "string",
+            "description": "registration number of the student"
+        }
+    ]
+}

@@ -1,0 +1,16 @@
+{
+    "schema": "college-schema",
+    "mandatoryExpiration": false,
+    "attributes": [
+        {
+            "name": "name",
+            "type": "string",
+            "description": "Name of the college"
+        },
+        {
+            "name": "license",
+            "type": "string",
+            "description": "license issued by the educational ministry"
+        }
+    ]
+}
