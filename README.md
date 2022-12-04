@@ -11,6 +11,8 @@ The problem is more prevalent in rural areas and exists in cities too but due to
 Since, the Degrees currently are in hard paper form. It is more easier to manipulate.
 
 Hence , We are here with the solution zkPOD - A solution where you get you get your on-chain verification of your degree.
+![image](https://user-images.githubusercontent.com/95926324/205473350-f17de11c-cc02-4fce-91e6-aba9849c487c.png)
+
 
 zkPOD is a decentralized platform which is built on top of the polygonID with the SSL. The idea is simple. We want to solve the issue of fake degrees and doctors in India. So, every university will come up on our platform and create schemas with the help of PolygonID. We utilise the zkEVM of polygonID to create claims for the issuer and then the doctors can login claim their proof in polygonID wallet. At the end, they will be prompted with a QR code to mint a SBT which will be their doctors degree and will be tied with the wallet forever. The verification of completion of credits is done through the university itself and the portal will allow the user to get their claim and SBT.
 
@@ -29,10 +31,6 @@ The Colleges can send the notifications to their University Students when they a
 All the Different Universities will be added as Delegates so that they have the permission to send the notifications.
 ![image](https://user-images.githubusercontent.com/95926324/205470159-fcb5cf1a-62e7-491f-a426-62a4f27272e8.png)
 
-
-Workflow- 
-
-1> 
 
 
 Future Scope-  
