@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import {Modal,Box,Typography,TextField} from "@mui/material"
-import Image from 'next/image';
-import ButtonUI from './Button';
+import {Modal,Box,Typography,TextField, Button} from "@mui/material"
+import { QRCode } from 'react-qr-svg';
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -18,28 +17,14 @@ const style = {
 
 const DetailsModal = (props:any) => {
   const {
-    data,
     open,
     handleClose
     }=props;
-    const {
-      studentId,
-      accountAddress,
-      passoutdate,
-      name,
-      image,
-      age,
-      phnumber
-    }=data;
 
-    const [license,setLicense]=useState("");
-    const createDegree=()=>{
-      console.log(data,license);
-    }
-    const inputHandler=(e:React.FormEvent<HTMLInputElement>)=>{
-      setLicense(e.target.value);
-    }
 
+  const minter=()=>{
+    // Minting code will be here
+  }
 
   return (
     <>
@@ -50,73 +35,12 @@ const DetailsModal = (props:any) => {
       aria-describedby="modal-modal-description"
     >
       <Box sx={style}>
-        <Image
-          src={image}
-          alt="doctor-image"
-          style={{
-            width:"300px",
-            textAlign:"center",
-            borderRadius:"20px",
-          }}
-        />
-        <Box display="felx">
-          <Typography variant='h6' fontWeight="bold">
-            Name
-          </Typography>
-          <Typography variant='h6'>
-            {name}
-          </Typography>
-        </Box>
-        <Box display="felx">
-          <Typography variant='h6' fontWeight="bold">
-            Student Id
-          </Typography>
-          <Typography variant='h6'>
-            {studentId}
-          </Typography>
-        </Box>
-        <Box display="felx">
-          <Typography variant='h6' fontWeight="bold">
-          Account Address
-          </Typography>
-          <Typography variant='h6'>
-            {accountAddress}
-          </Typography>
-        </Box>
-        <Box display="felx">
-          <Typography variant='h6' fontWeight="bold">
-          Age
-          </Typography>
-          <Typography variant='h6'>
-            {age}
-          </Typography>
-        </Box>
-
-        <Box display="felx">
-          <Typography variant='h6' fontWeight="bold">
-           Passout date
-          </Typography>
-          <Typography variant='h6'>
-            {passoutdate}
-          </Typography>
-        </Box>
-        <Box display="felx">
-          <Typography variant='h6' fontWeight="bold">
-            Phone number
-          </Typography>
-          <Typography variant='h6'>
-            {phnumber}
-          </Typography>
-        </Box>
-        <Box display="felx" mb={2}>
-          <Typography variant='h6' fontWeight="bold">
-            Provide License Number
-          </Typography>
-          <TextField id="outlined-basic" label="Outlined" variant="outlined" onChange={inputHandler}/>
-        </Box>
-        
-        <ButtonUI onClickHandler={createDegree} name="Genrate Degree" />
-        
+      <QRCode
+        level="Q"
+        style={{ width: 256 }}
+        value={JSON.stringify({h:"qrProofRequestJson"})}
+      />
+      <Button variant="outlined" onClick={minter}>Mint Degree</Button>
       </Box>
     </Modal>
     </>

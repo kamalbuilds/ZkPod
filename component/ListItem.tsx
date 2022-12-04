@@ -28,7 +28,6 @@ const ListItem = (props:any) => {
         data={props.data}
         open={open}
         handleClose={handleClose}
-
       />
     <GlassCardLayout styleProp={{mb:2,p:2}}>
       <Box display="flex" justifyContent="space-between">
