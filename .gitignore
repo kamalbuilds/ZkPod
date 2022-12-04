@@ -4,3 +4,4 @@ artifacts
 
 polygon-id/.env
 .gitignore
+.env
