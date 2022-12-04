@@ -1,4 +1,8 @@
 node_modules/
 cache
 artifacts
-.next/
+
+polygon-id/.env
+.gitignore
+.env
+.next

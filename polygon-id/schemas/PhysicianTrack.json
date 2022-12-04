@@ -1,0 +1,11 @@
+{
+  "schema": "PhyscianTrack",
+  "mandatoryExpiration": false,
+  "attributes": [
+      {
+          "name": "Graduated",
+          "type": "Yes or No",
+          "description": "This proves that the holder of this claim has graduated from AIIMS as a physician, and is verified to see patients."
+      }
+  ]
+}
