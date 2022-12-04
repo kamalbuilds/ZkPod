@@ -1,6 +1,10 @@
 node_modules/
 cache
 artifacts
+<<<<<<< HEAD
 
 polygon-id/.env
 .gitignore
+=======
+.next/
+>>>>>>> 09f10ed55a311b36ad743ea4e0160234be479a76

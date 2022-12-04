@@ -34,7 +34,8 @@ const AuthContextProvider = ({children}) => {
                 console.log("Connected!!"); 
                 // Get the User Ethereum address
                 const address = await provider.getSigner().getAddress();
-                console.log(address);                    
+                console.log(address);  
+                setAddress(address)                  
             }
             setLoading(false);
         } catch (error) {
