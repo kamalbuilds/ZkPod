@@ -9,7 +9,7 @@ const Navbar = () => {
         >
             <span style={{
                 color:"#16c2d5"
-            }}>ZK</span>Med
+            }}>zk</span>POD
         </Typography>
     </Box>
   )
