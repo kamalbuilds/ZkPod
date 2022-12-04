@@ -67,7 +67,7 @@ const StudentRegistration = () => {
       marginRight:4,
       width:"400px"
     }}>
-      Login to claim your degree as an SBT, and generate a proof for your identity on-chain.
+      Login to claim your degree as an SBT, and generate a proof for your private polygon identity on-chain.
     </Typography>
     
     </Box> 
