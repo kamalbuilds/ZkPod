@@ -3,30 +3,32 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
-
+import "@openzeppelin/contracts/utils/Strings.sol";
+import "@openzeppelin/contracts/utils/Base64.sol";
 import "./lib/GenesisUtils.sol";
 import "./interfaces/ICircuitValidator.sol";
 import "./verifiers/ZKPVerifier.sol";
 
 contract ERC721Verifier is ERC721URIStorage, ZKPVerifier {
-    using Counters for Counters.Counter;
-    uint64 public constant TRANSFER_REQUEST_ID = 1;
 
-    Counters.Counter private _tokenIds;
+    uint64 public constant TRANSFER_REQUEST_ID = 1;
 
     mapping(uint256 => address) public idToAddress;
     mapping(address => uint256) public addressToId;
 
-    constructor(string memory name_, string memory symbol_)
-        ERC721(name_, symbol_)
-    {}
+    using Strings for uint256;
+    using Counters for Counters.Counter;
+    Counters.Counter private _tokenIds;
+
+    constructor() ERC721 ("SocialAgeCheck", "SACK"){
+    }    
 
     function _beforeProofSubmit(
         uint64, /* requestId */
         uint256[] memory inputs,
         ICircuitValidator validator
     ) internal view override {
-        // check that challenge input of the proof is equal to the msg.sender
+        // check that challenge input of the proof is equal to the msg.sender 
         address addr = GenesisUtils.int256ToAddress(
             inputs[validator.getChallengeInputIndex()]
         );
@@ -39,67 +41,57 @@ contract ERC721Verifier is ERC721URIStorage, ZKPVerifier {
     function _afterProofSubmit(
         uint64 requestId,
         uint256[] memory inputs,
-        ICircuitValidator validator,
-        string memory uri
-    ) internal {
+        ICircuitValidator validator
+    ) internal override {
         require(
             requestId == TRANSFER_REQUEST_ID && addressToId[_msgSender()] == 0,
             "proof can not be submitted more than once"
         );
 
         uint256 id = inputs[validator.getChallengeInputIndex()];
-        // execute the airdropping of NFT
+        // execute the token mint
         if (idToAddress[id] == address(0)) {
-            super._mint(_msgSender(), _tokenIds.current());
-            super._setTokenURI(_tokenIds.current(), uri);
             _tokenIds.increment();
-            addressToId[_msgSender()] = id;
-            idToAddress[id] = _msgSender();
+            uint256 newItemId = _tokenIds.current();
+            _safeMint(msg.sender, newItemId);
+            _setTokenURI(newItemId, getTokenURI(newItemId));
         }
     }
 
-    function _beforeTokenTransfer(
-        address, /* from */
-        address to,
-        uint256 /* amount */
-    ) internal view {
-        require(
-            proofs[to][TRANSFER_REQUEST_ID] == true,
-            "only identities who provided proof are allowed to receive tokens"
+    function _beforeTokenTransfer(address from, address to, uint256) pure override internal {
+        require(from == address(0) || to == address(0), "Your age is your own not someone elses.");
+    }
+
+    function generateSVGforToken() public pure returns(string memory){
+        bytes memory svg = abi.encodePacked(
+            '<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet" viewBox="0 0 350 350">',
+            '<style>.base { fill: white; font-family: serif; font-size: 14px; }</style>',
+            '<rect width="100%" height="100%" fill="black" />',
+            '<text x="50%" y="50%" class="base" dominant-baseline="middle" text-anchor="middle">',"Verifed 13 or older",'</text>',
+            '</svg>'
+        );
+        return string(
+            abi.encodePacked(
+                "data:image/svg+xml;base64,",
+                Base64.encode(svg)
+            ));
+    }
+
+    function getTokenURI(uint256 tokenId) public pure returns (string memory){
+        bytes memory dataURI = abi.encodePacked(
+            '{',
+                '"name": "Thirteen Check #', tokenId.toString(), '",',
+                '"description": "Verified credential of age over 13",',
+                '"image": "', generateSVGforToken(), '"',
+            '}'
+        );
+        return string(
+            abi.encodePacked(
+                "data:application/json;base64,",
+                Base64.encode(dataURI)
+            )
         );
     }
 
-    // ================== converting to sbt ========================
-    function transfer(
-        address from,
-        address to,
-        uint256 tokenId
-    ) public virtual {}
-
-    function transferFrom(
-        address from,
-        address to,
-        uint256 tokenId
-    ) public virtual override {}
-
-    function safeTransferFrom(
-        address from,
-        address to,
-        uint256 tokenId
-    ) public virtual override {}
-
-    function safeTransferFrom(
-        address from,
-        address to,
-        uint256 tokenId,
-        bytes memory data
-    ) public virtual override {}
-
-    function approve(address to, uint256 tokenId) public virtual override {}
-
-    function setApprovalForAll(address operator, bool _approved)
-        public
-        virtual
-        override
-    {}
+    
 }
