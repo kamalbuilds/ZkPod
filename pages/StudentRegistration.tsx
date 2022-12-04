@@ -61,8 +61,7 @@ const StudentRegistration = () => {
                 } = jwt_decode(token)
                 console.log(issuerId)
                 const schema_id = "e5c6d9aa8db73c187113290407082ebd"
-                const tempSchemaLink = `https://api-staging.polygonid.com/v1/issuers/${issuerId}/schemas/${schema_id
-                    }`
+                const tempSchemaLink = `https://api-staging.polygonid.com/v1/issuers/${issuerId}/schemas/${schema_id}`
                 setClaimLink(`${tempSchemaLink}/offers`)
                 return { token, tempSchemaLink }
             })
@@ -111,9 +110,9 @@ const StudentRegistration = () => {
 
     const register = () => {
         setLoading(true);
-        setOpen(true);
         handleResults();
         setLoading(false);
+        setOpen(true);
     }
 
     return (
