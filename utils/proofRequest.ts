@@ -18,7 +18,7 @@
         "transaction_data": {
             // - deployed contract address where it will call a specific function
             // <CHANGE THIS>
-            "contract_address": "0xeD05AC777229866383bc0c2388472a21a0c1bE3c",
+            "contract_address": "0xE8274D285F08D52fd1DEC6434b9360eB20d1467E",
             // - hash of the function name from the ABI - b68967e2 = submitZKPResponse
             "method_id": "b68967e2",
             // - chain id of the network
