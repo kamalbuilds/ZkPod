@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import {Modal,Box,Typography,TextField, Button} from "@mui/material"
 import { QRCode } from 'react-qr-svg';
+import proofRequest from '../utils/proofRequest';
 
 const style = {
   position: 'absolute' as 'absolute',
