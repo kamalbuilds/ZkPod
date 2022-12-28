@@ -1,4 +1,4 @@
-# zkPOD - Zero Knowledge Medical 
+# zkPOD - Zero Knowledge Proof of Degree 
 Zero Knowledge On Chain Verification for your medical degree.
 ![image](https://user-images.githubusercontent.com/95926324/205470191-d72a0698-a861-424a-8f28-6014bc7d3530.png)
 
