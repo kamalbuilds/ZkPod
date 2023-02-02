@@ -44,3 +44,9 @@ Future Scope-
 The project has a very bright future scope as it could be extended to every Degree's and All Types of Universities ranging from Medical , Eingennering , Lawyer .
 
 This will help to keep the system free from fake degree holders 
+
+How to get started with the repo 
+
+`npm i' or 'yarn'
+
+`npm run dev' or 'yarn dev'
